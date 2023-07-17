@@ -11,6 +11,7 @@ class Car{
         this.speed=0;
         this.acceleration=0.2;
         this.angle=0;
+        this.steer=0.02;
         // this.controls=new Controls()
     };
 
@@ -51,10 +52,10 @@ class Car{
             if(this.speed!=0){
                 const flip=this.speed>0?1:-1;
                 if(this.controller.left){
-                    this.angle+=0.03*flip
+                    this.angle+=this.steer*flip
                 }
                 if(this.controller.right){
-                    this.angle-=0.03*flip
+                    this.angle-=this.steer*flip
                 }
             }
             
