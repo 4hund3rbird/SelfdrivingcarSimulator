@@ -2,30 +2,23 @@ function lerp(A,B,t){
     return A+(B-A)*t;
 }
 
-function drawDashedLine(ctx, dashLength, dashGap, x1, y1, x2, y2) {
-    const dx = x2 - x1;
-    const dy = y2 - y1;
-    const numDashes = Math.floor(Math.sqrt(dx * dx + dy * dy) / (dashLength + dashGap));
-  
-    const xIncrement = dx / numDashes;
-    const yIncrement = dy / numDashes;
-  
-    let currentX = x1;
-    let currentY = y1;
-  
-    ctx.beginPath();
-  
-    for (let i = 0; i < numDashes; i++) {
-      if (i % 2 === 0) {
-        ctx.moveTo(currentX, currentY);
-      } else {
-        ctx.lineTo(currentX, currentY);
+function getintersection(A,B,C,D){
+  const tTop=(D.x-C.x)*(A.y-C.y)-(D.y-C.y)*(A.x-C.x);
+  const uTop=(C.y-A.y)*(A.x-B.x)-(C.x-A.x)*(A.y-B.y);
+  const bottom=(D.y-C.y)*(B.x-A.x)-(D.x-C.x)*(B.y-A.y);
+
+  if(bottom!=0){
+    const t=tTop/bottom;
+    const u=uTop/bottom;
+    if(t>=0&&t<=1&&u>=0&&u<=1){
+      return{
+        x:lerp(A.x,B.x,t),
+        y:lerp(A.y,B.y,t),
+        offset:t
       }
-  
-      currentX += xIncrement;
-      currentY += yIncrement;
     }
-  
-    ctx.stroke();
   }
+
+  return null;
+}
   

@@ -1,10 +1,13 @@
+
 class Car{
     constructor(x,y,width,height){
         this.x=x;
         this.y=y;
         this.width=width;
         this.height=height;
+        
         this.controller=new Controller();
+        this.sensor=new Sensor(this);
 
         this.maxspeed=5;
         this.friction=0.05;
@@ -15,9 +18,14 @@ class Car{
         // this.controls=new Controls()
     };
 
-    update(){
+    update(borders){
         this.#move();
+        this.sensor.update(borders);
 
+    }
+
+    #createpolygons(){
+        
     }
 
     #move(){
@@ -76,7 +84,7 @@ class Car{
             -this.height/2,
             this.width,
             this.height);
-
         ctx.restore();
+        this.sensor.draw(ctx);
     };
 }

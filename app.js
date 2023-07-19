@@ -1,5 +1,5 @@
 function animate(){
-    car1.update()
+    car1.update(road.borders)
     canvas.height=window.innerHeight;
     ctx.save();
     ctx.translate(0,-car1.y+canvas.height/2)

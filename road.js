@@ -39,7 +39,7 @@ class Road{
             if(i>0 && i<this.lane_count){
                 ctx.strokeStyle="white";
                 ctx.lineWidth=3;
-                ctx.setLineDash([20,20]);
+                ctx.setLineDash([30,30]);
             } else{
                 ctx.strokeStyle="yellow";
                 ctx.lineWidth=5;
